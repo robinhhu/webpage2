@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% block title %}
+<title>HerzenHerzen</title>
+{% endblock %}
+
+{% block nav %}
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="/"><h2>HerzenHerzen<em>.</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/">Main
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/myRecords">My Records</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/postDetails">Post Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sign">Log in</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="main-banner header-text">
+      <div class="container-fluid">
+        <div class="owl-banner owl-carousel">
+          <div class="item">
+            <img src="../static/images/hollywood.jpg" alt="Hollywood movie">
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  <span>Movies</span>
+                </div>
+                <a href="post-details.html"><h4>Movie Collections</h4></a>
+                <ul class="post-info">
+                  <li><a href="#br">Bohemian Rhapsody</a></li>
+                  <li><a href="#">November 2018</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="../static/images/chicago.jpg" alt="chicago theater">
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  <span>Drama</span>
+                </div>
+                <a href="post-details.html"><h4>Theater and Drama</h4></a>
+                <ul class="post-info">
+                  <li><a href="#chi">Chicago</a></li>
+                  <li><a href="#">Broadway</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="../static/images/music.jpg" alt="books">
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  <span>Books</span>
+                </div>
+                <a href="post-details.html"><h4>Literature</h4></a>
+                <ul class="post-info">
+                  <li><a href="#trd">The Remains of the Day</a></li>
+                  <li><a href="#">Kazuo Ishigur</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="../static/images/prado.jpg" alt="prado museum">
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  <span>Exhibition</span>
+                </div>
+                <a href="post-details.html"><h4>City & Exhibition</h4></a>
+                <ul class="post-info">
+                  <li><a href="#">Madrid Spain</a></li>
+                  <li><a href="#">Museo Nacional del Prado</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="../static/images/book.jpg" alt="music cds">
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  <span>Music</span>
+                </div>
+                <a href="post-details.html"><h4>Music Collection</h4></a>
+                <ul class="post-info">
+                  <li><a href="#">Pink Floyd</a></li>
+                  <li><a href="#">Animals</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="call-to-action">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="main-content">
+              <div class="row">
+                <div class="col-lg-8">
+                  <span>HerzenHerzen</span>
+                  <h4>Record your life</h4>
+                </div>
+                <div class="col-lg-4">
+                  <div class="main-button">
+                    <a rel="nofollow" href="/" target="_parent">Start Now!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-posts">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="blog-post" id="br">
+                    <div class="blog-thumb">
+                      <img src="../static/images/br.png" alt="">
+                    </div>
+                    <div class="down-content">
+                      <span>Movies</span>
+                      <a href="post-details.html"><h4>Bohemian Rhapsody</h4></a>
+                      <ul class="post-info">
+                        <li>November 2018</li>
+                      </ul>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com modo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-6">
+                            <ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              <li><a href="#">Queen</a>,</li>
+                              <li><a href="#">Documentary</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-6">
+                            <ul class="post-share">
+                              <li><i class="fa fa-share-alt"></i></li>
+                              <li><a href="#">Facebook</a>,</li>
+                              <li><a href="#"> Twitter</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="blog-post" id="chi">
+                    <div class="blog-thumb">
+                      <img src="../static/images/chi.jpg" alt="">
+                    </div>
+                    <div class="down-content">
+                      <span>Drama</span>
+                      <a href="post-details.html"><h4>Chicago</h4></a>
+                      <ul class="post-info">
+                        <li><a href="#">Broadway</a></li>
+                        <li><a href="#">Tue Jun 1</a></li>
+                      </ul>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com modo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-6">
+                            <ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              <li><a href="#">Broadway</a>,</li>
+                              <li><a href="#">Play</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-6">
+                            <ul class="post-share">
+                              <li><i class="fa fa-share-alt"></i></li>
+                              <li><a href="#">Facebook</a>,</li>
+                              <li><a href="#">Twitter</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="blog-post" id="trd">
+                    <div class="blog-thumb">
+                      <img src="../static/images/trod.jpg" alt="">
+                    </div>
+                    <div class="down-content">
+                      <span>Literature</span>
+                      <a href="post-details.html"><h4>The Remains of the Day</h4></a>
+                      <ul class="post-info">
+                        <li><a href="#">Kazuo Ishigur</a></li>
+                        <li><a href="#">May 1989</a></li>
+                      </ul>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com modo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-6">
+                            <ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              <li><a href="#">Literature</a>,</li>
+                              <li><a href="#">Nobel</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-6">
+                            <ul class="post-share">
+                              <li><i class="fa fa-share-alt"></i></li>
+                              <li><a href="#">Facebook</a>,</li>
+                              <li><a href="#">Twitter</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="main-button">
+                    <a href="blog.html">View All Posts</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="sidebar">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="sidebar-item search">
+                    <form id="search_form" name="gs" method="GET" action="#">
+                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                    </form>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item recent-posts">
+                    <div class="sidebar-heading">
+                      <h2>Recent Posts</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li><a href="post-details.html">
+                          <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
+                          <span>May 31, 2020</span>
+                        </a></li>
+                        <li><a href="post-details.html">
+                          <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
+                          <span>May 28, 2020</span>
+                        </a></li>
+                        <li><a href="post-details.html">
+                          <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
+                          <span>May 14, 2020</span>
+                        </a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item categories">
+                    <div class="sidebar-heading">
+                      <h2>Categories</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li><a href="#">- Nature Lifestyle</a></li>
+                        <li><a href="#">- Awesome Layouts</a></li>
+                        <li><a href="#">- Creative Ideas</a></li>
+                        <li><a href="#">- Responsive Templates</a></li>
+                        <li><a href="#">- HTML5 / CSS3 Templates</a></li>
+                        <li><a href="#">- Creative &amp; Unique</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item tags">
+                    <div class="sidebar-heading">
+                      <h2>Tag Clouds</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Creative</a></li>
+                        <li><a href="#">HTML5</a></li>
+                        <li><a href="#">Inspiration</a></li>
+                        <li><a href="#">Motivation</a></li>
+                        <li><a href="#">PSD</a></li>
+                        <li><a href="#">Responsive</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
