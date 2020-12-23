@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block title %}
 <title>blog</title>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
 {% endblock %}
 
 {% block nav %}
@@ -26,9 +32,15 @@
               <li class="nav-item active">
                 <a class="nav-link" href="/contact">Contact us</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sign">Log in</a>
-              </li>
+              {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Log out {{ current_user.username }}</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/sign">Log in</a>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -36,8 +48,6 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Page Content -->
-    <!-- Banner Starts Here -->
     <div class="heading-page header-text">
       <section class="page-heading">
         <div class="container">
@@ -52,9 +62,6 @@
         </div>
       </section>
     </div>
-    
-    <!-- Banner Ends Here -->
-
 
     <section class="contact-us">
       <div class="container">
@@ -69,16 +76,16 @@
                       <h2>Send us a message</h2>
                     </div>
                     <div class="content">
-                      <form id="contact" action="" method="post">
+                      <form id="contact" action="/contact" method="post" name="contact">
                         <div class="row">
                           <div class="col-md-6 col-sm-12">
                             <fieldset>
-                              <input name="name" type="text" id="name" placeholder="Your name" required="">
+                              <input name="name" type="text" id="name" placeholder="Your name" value="{{current_user.username}}">
                             </fieldset>
                           </div>
                           <div class="col-md-6 col-sm-12">
                             <fieldset>
-                              <input name="email" type="text" id="email" placeholder="Your email" required="">
+                              <input name="email" type="text" id="email" placeholder="Your email" value="{{current_user.email}}">
                             </fieldset>
                           </div>
                           <div class="col-md-12 col-sm-12">
@@ -109,16 +116,16 @@
                     <div class="content">
                       <ul>
                         <li>
-                          <h5>13854385462</h5>
+                          <h5>(+86)-13854385462</h5>
                           <span>PHONE NUMBER</span>
                         </li>
                         <li>
-                          <h5>emeraldhu@icloud.com</h5>
+                          <h5>sc18y5h@leeds.ac.uk</h5>
                           <span>EMAIL ADDRESS</span>
                         </li>
                         <li>
-                          <h5>SWJTU-Leeds Joint School
-                          	<br>Chengdu Sichuan China</h5>
+                          <h5>Teaching Building 9,
+                          	<br>SWJTU-Leeds Joint School</h5>
                           <span>STREET ADDRESS</span>
                         </li>
                       </ul>

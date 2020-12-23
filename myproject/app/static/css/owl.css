@@ -6,6 +6,10 @@
 /*
  *  Owl Carousel - Core
  */
+
+ .alert {
+    margin-bottom:0;
+ }
      #baiduMap {
      width: 88vw;
      height: 78vh;
