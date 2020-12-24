@@ -3,10 +3,19 @@ from app import app,db
 from flask_login import login_required, login_user,current_user,logout_user
 from .users import User
 from .contact import Contact
+from .post import Post
+from sqlalchemy import or_
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    posts = Post.query.all().order_by(Post.date)
+    movies = len(Post.query.filter_by(subject="MOVIES").all())
+    drama = len(Post.query.filter_by(subject="DRAMA").all())
+    books = len(Post.query.filter_by(subject="BOOKS").all())
+    exhibition = len(Post.query.filter_by(subject="EXHIBITION").all())
+    music = len(Post.query.filter_by(subject="MUSIC").all())
+    return render_template('index.html',posts=posts,movies=movies,drama=drama,
+                           books=books,exhibition=exhibition,music=music)
 
 @app.route('/sign',methods=['GET','POST'])
 def sign():
@@ -26,7 +35,6 @@ def sign():
     return render_template('sign.html')
 
 @app.route('/myRecords')
-@login_required
 def myRecords():
     return render_template('myRecords.html')
 
@@ -58,6 +66,9 @@ def create():
         email = request.form.get("email", type=str)
         username = request.form.get("username", type=str)
         password = request.form.get("password", type=str)
+        if(len(password) < 6):
+            msg = "password should at least contain 6 characters"
+            return render_template('create.html',msg=msg)
         print(email,username,password)
         user = User.query.filter_by(email=email).all()
         if (len(user) != 0):
@@ -84,7 +95,9 @@ def password():
         email = request.form.get("email",type=str)
         username = request.form.get("username", type=str)
         password = request.form.get("password", type=str)
-        print(email,username,password)
+        if(len(password) < 6):
+            msg = "password should at least contain 6 characters"
+            return render_template('password.html',msg=msg)
         user = User.query.filter_by(username=username,email=email).all()
         if (len(user) == 0):
             msg = "account not found"
@@ -104,6 +117,19 @@ def password():
 @app.route('/postDetails')
 def postDetails():
     return render_template('postDetails.html')
+
+@app.route('/search',methods=['GET','POST'])
+def search():
+    if request.method == 'POST':
+        content = request.form.get("search", type=str)
+        posts = Post.query.filter(or_(Post.title.contains(content), Post.description.contains(content))).all()
+
+    return render_template('search.html', posts=posts)
+
+@app.route('/search/<subject>',methods=['GET','POST'])
+def searchs(subject):
+    posts=Post.query.filter_by(subject=subject).all()
+    return render_template('search.html',posts=posts,subject=subject)
 
 @app.route('/logout')
 @login_required

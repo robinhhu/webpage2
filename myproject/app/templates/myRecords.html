@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-<title>blog</title>
+<title>My Records</title>
 {% endblock %}
 
 {% block nav %}
@@ -50,16 +50,15 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="text-content">
-                <h4>Recent Posts</h4>
-                <h2>Our Recent Blog Entries</h2>
+                <h4>HERZENHERZEN</h4>
+                <h2>My Records</h2>
               </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-    
-    <!-- Banner Ends Here -->
+ <!-- Banner Ends Here -->
 
     <section class="blog-posts grid-system">
       <div class="container">
@@ -73,7 +72,7 @@
                       <img src="../static/images/blog-thumb-01.jpg" alt="">
                     </div>
                     <div class="down-content">
-                      <span>Lifestyle</span>
+                      <span>MOVIES</span>
                       <a href="post-details.html"><h4>Donec tincidunt leo</h4></a>
                       <ul class="post-info">
                         <li><a href="#">Admin</a></li>
@@ -246,37 +245,15 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-4">
             <div class="sidebar">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="sidebar-item search">
-                    <form id="search_form" name="gs" method="GET" action="#">
-                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                    <form id="search_form" method="post" action="/search">
+                      <input type="text" name="search" id="search" class="searchText" placeholder="type to search..." autocomplete="on">
                     </form>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="sidebar-item recent-posts">
-                    <div class="sidebar-heading">
-                      <h2>Recent Posts</h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                        <li><a href="post-details.html">
-                          <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
-                          <span>May 31, 2020</span>
-                        </a></li>
-                        <li><a href="post-details.html">
-                          <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
-                          <span>May 28, 2020</span>
-                        </a></li>
-                        <li><a href="post-details.html">
-                          <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
-                          <span>May 14, 2020</span>
-                        </a></li>
-                      </ul>
-                    </div>
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -286,12 +263,11 @@
                     </div>
                     <div class="content">
                       <ul>
-                        <li><a href="#">- Nature Lifestyle</a></li>
-                        <li><a href="#">- Awesome Layouts</a></li>
-                        <li><a href="#">- Creative Ideas</a></li>
-                        <li><a href="#">- Responsive Templates</a></li>
-                        <li><a href="#">- HTML5 / CSS3 Templates</a></li>
-                        <li><a href="#">- Creative &amp; Unique</a></li>
+                        <li><a href="/search/MUSIC">- MUSIC</a></li>
+                        <li><a href="/search/MOVIES">- MOVIES</a></li>
+                        <li><a href="/search/EXHIBITION">- EXHIBITION</a></li>
+                        <li><a href="/search/DRAMA">- DRAMA</a></li>
+                        <li><a href="/search/BOOKS">- BOOKS</a></li>
                       </ul>
                     </div>
                   </div>
@@ -303,13 +279,12 @@
                     </div>
                     <div class="content">
                       <ul>
-                        <li><a href="#">Lifestyle</a></li>
-                        <li><a href="#">Creative</a></li>
-                        <li><a href="#">HTML5</a></li>
-                        <li><a href="#">Inspiration</a></li>
-                        <li><a href="#">Motivation</a></li>
-                        <li><a href="#">PSD</a></li>
-                        <li><a href="#">Responsive</a></li>
+                        <li><a href="#">Nobel Prize</a></li>
+                        <li><a href="#">Literature</a></li>
+                        <li><a href="#">Broadway</a></li>
+                        <li><a href="#">Play</a></li>
+                        <li><a href="#">Queen</a></li>
+                        <li><a href="#">Documentary</a></li>
                       </ul>
                     </div>
                   </div>
