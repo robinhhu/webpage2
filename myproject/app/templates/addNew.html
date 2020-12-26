@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
-<title>about</title>
+<title>Add New</title>
 {% endblock %}
 
 {% block nav %}
-      <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand" href="/"><h2>HerzenHerzen<em>.</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
                 <a class="nav-link" href="/myRecords">My Records</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="/addNew">What's New</a>
+                <a class="nav-link" href="/addNew">Add New</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact us</a>
@@ -39,6 +39,12 @@
           </div>
         </div>
       </nav>
+    {% for message in get_flashed_messages() %}
+    <div class="invisible">
+        {{ message }}
+    </div>
+    {% endfor %}
+
 {% endblock %}
 
 {% block content %}
@@ -50,8 +56,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="text-content">
-                <h4>about us</h4>
-                <h2>more about us!</h2>
+                <h4>Add New</h4>
+                <h2>Add Your Record Now!</h2>
               </div>
             </div>
           </div>
@@ -59,9 +65,6 @@
       </section>
     </div>
     
-    <!-- Banner Ends Here -->
-
-
     <section class="about-us">
       <div class="container">
       	

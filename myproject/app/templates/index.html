@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block title %}
 <title>HerzenHerzen</title>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
 {% endblock %}
 
 {% block nav %}
@@ -21,7 +27,7 @@
                 <a class="nav-link" href="/myRecords">My Records</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/postDetails">Post Details</a>
+                <a class="nav-link" href="/addNew">Add New</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact us</a>
@@ -120,7 +126,7 @@
     </div>
 
     <section class="blog-posts">
-      <div class="container">z
+      <div class="container">
         <div class="row">
           <div class="col-lg-8">
             <div class="all-blog-posts">
@@ -136,7 +142,8 @@
                       <span>{{post.subject}}</span>
                       <a href="/postDetails/{{post.id}}"><h4>{{post.title}}</h4></a>
                       <ul class="post-info">
-                        <li>{{post.date}}</li>
+                        <li>{{post.date.date()}}</li>
+                        <li>{{post.username}}</li>
                       </ul>
                       <p>{{post.description}}</p>
                       <div class="post-options">
@@ -144,8 +151,8 @@
                           <div class="col-6">
                             <ul class="post-tags">
                               <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Queen</a>,</li>
-                              <li><a href="#">Documentary</a></li>
+                              <li><a href="#">Tags</a>,</li>
+                              <li><a href="#">Tags</a></li>
                             </ul>
                           </div>
                           <div class="col-6">

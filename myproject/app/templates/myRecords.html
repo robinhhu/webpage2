@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block nav %}
-      <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand" href="/"><h2>HerzenHerzen<em>.</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
                 <a class="nav-link" href="/myRecords">My Records</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/postDetails">Post Details</a>
+                <a class="nav-link" href="/addNew">Add New</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact us</a>
@@ -39,260 +39,140 @@
           </div>
         </div>
       </nav>
+    {% for message in get_flashed_messages() %}
+    <div class="invisible">
+        {{ message }}
+    </div>
+    {% endfor %}
 {% endblock %}
 
 {% block content %}
     <!-- Page Content -->
     <!-- Banner Starts Here -->
-    <div class="heading-page header-text">
-      <section class="page-heading">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="text-content">
-                <h4>HERZENHERZEN</h4>
-                <h2>My Records</h2>
+    {% if posts|length < 1 %}
+        <div class="heading-page header-text">
+            <section class="page-heading">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="text-content">
+                      <h4>My Records</h4>
+                      <h2>You have no records yet...</h2>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </section>
         </div>
-      </section>
-    </div>
- <!-- Banner Ends Here -->
-
-    <section class="blog-posts grid-system">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="all-blog-posts">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                      <img src="../static/images/blog-thumb-01.jpg" alt="">
+    {% else %}
+        <div class="heading-page header-text">
+            <section class="page-heading">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="text-content">
+                      <h4>My Records</h4>
+                      <h2>Here, record your life...</h2>
                     </div>
-                    <div class="down-content">
-                      <span>MOVIES</span>
-                      <a href="post-details.html"><h4>Donec tincidunt leo</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 31, 2020</a></li>
-                        <li><a href="#">12 Comments</a></li>
-                      </ul>
-                      <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Best Templates</a>,</li>
-                              <li><a href="#">TemplateMo</a></li>
-                            </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+        </div>
+        <section class="blog-posts grid-system">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="all-blog-posts">
+                  <div class="row">
+                    {% for post in posts %}
+                      <div class="col-lg-6">
+                      <div class="blog-post">
+                        <div class="blog-thumb">
+                          <img src="../static/images/{{ post.title }}.jpg" alt="{{ post.title }}">
+                        </div>
+                        <div class="down-content">
+                          <span>{{ post.subject }}</span>
+                          <a href="post-details.html"><h4>{{ post.title }}</h4></a>
+                          <ul class="post-info">
+                            <li><a href="#">{{ post.date.date() }}</a></li>
+                            <li><a href="/deletePosts/{{post.id}}"><span class="lnr lnr-trash"></span></a></li>
+                          </ul>
+                          <p>{{ post.description }}</p>
+                          <div class="post-options">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <ul class="post-tags">
+                                  <li><i class="fa fa-tags"></i></li>
+                                  <li><a href="#">Tags</a>,</li>
+                                  <li><a href="#">Tags</a></li>
+                                </ul>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                      <img src="../static/images/blog-thumb-02.jpg" alt="">
-                    </div>
-                    <div class="down-content">
-                      <span>Lifestyle</span>
-                      <a href="post-details.html"><h4>Suspendisse et metus</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 22, 2020</a></li>
-                        <li><a href="#">26 Comments</a></li>
-                      </ul>
-                      <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Best Templates</a>,</li>
-                              <li><a href="#">TemplateMo</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                      <img src="../static/images/blog-thumb-03.jpg" alt="">
-                    </div>
-                    <div class="down-content">
-                      <span>Lifestyle</span>
-                      <a href="post-details.html"><h4>Donec tincidunt leo</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 18, 2020</a></li>
-                        <li><a href="#">42 Comments</a></li>
-                      </ul>
-                      <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Best Templates</a>,</li>
-                              <li><a href="#">TemplateMo</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                      <img src="../static/images/blog-thumb-04.jpg" alt="">
-                    </div>
-                    <div class="down-content">
-                      <span>Lifestyle</span>
-                      <a href="post-details.html"><h4>Mauris ac dolor ornare</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 16, 2020</a></li>
-                        <li><a href="#">28 Comments</a></li>
-                      </ul>
-                      <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Best Templates</a>,</li>
-                              <li><a href="#">TemplateMo</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                      <img src="../static/images/blog-thumb-05.jpg" alt="">
-                    </div>
-                    <div class="down-content">
-                      <span>Lifestyle</span>
-                      <a href="post-details.html"><h4>Donec tincidunt leo</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 12, 2020</a></li>
-                        <li><a href="#">16 Comments</a></li>
-                      </ul>
-                      <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Best Templates</a>,</li>
-                              <li><a href="#">TemplateMo</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                      <img src="../static/images/blog-thumb-06.jpg" alt="">
-                    </div>
-                    <div class="down-content">
-                      <span>Lifestyle</span>
-                      <a href="post-details.html"><h4>Mauris ac dolor ornare</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 10, 2020</a></li>
-                        <li><a href="#">3 Comments</a></li>
-                      </ul>
-                      <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">Best Templates</a>,</li>
-                              <li><a href="#">TemplateMo</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
+                    {% endfor %}
+                      <div class="col-lg-12">
                   <ul class="page-numbers">
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                      <li><a href="#">1</a></li>
+                      <li class="active"><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
                   </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="sidebar">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="sidebar-item search">
-                    <form id="search_form" method="post" action="/search">
-                      <input type="text" name="search" id="search" class="searchText" placeholder="type to search..." autocomplete="on">
-                    </form>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="sidebar-item categories">
-                    <div class="sidebar-heading">
-                      <h2>Categories</h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                        <li><a href="/search/MUSIC">- MUSIC</a></li>
-                        <li><a href="/search/MOVIES">- MOVIES</a></li>
-                        <li><a href="/search/EXHIBITION">- EXHIBITION</a></li>
-                        <li><a href="/search/DRAMA">- DRAMA</a></li>
-                        <li><a href="/search/BOOKS">- BOOKS</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="sidebar-item tags">
-                    <div class="sidebar-heading">
-                      <h2>Tag Clouds</h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                        <li><a href="#">Nobel Prize</a></li>
-                        <li><a href="#">Literature</a></li>
-                        <li><a href="#">Broadway</a></li>
-                        <li><a href="#">Play</a></li>
-                        <li><a href="#">Queen</a></li>
-                        <li><a href="#">Documentary</a></li>
-                      </ul>
-                    </div>
                   </div>
                 </div>
               </div>
+              <div class="col-lg-4">
+                <div class="sidebar">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="sidebar-item search">
+                        <form id="search_form" method="post" action="/search">
+                          <input type="text" name="search" id="search" class="searchText" placeholder="type to search..." autocomplete="on">
+                        </form>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="sidebar-item categories">
+                        <div class="sidebar-heading">
+                          <h2>Categories</h2>
+                        </div>
+                        <div class="content">
+                          <ul>
+                            <li><a href="/search/MUSIC">- MUSIC</a></li>
+                            <li><a href="/search/MOVIES">- MOVIES</a></li>
+                            <li><a href="/search/EXHIBITION">- EXHIBITION</a></li>
+                            <li><a href="/search/DRAMA">- DRAMA</a></li>
+                            <li><a href="/search/BOOKS">- BOOKS</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="sidebar-item tags">
+                        <div class="sidebar-heading">
+                          <h2>Tag Clouds</h2>
+                        </div>
+                        <div class="content">
+                          <ul>
+                            <li><a href="#">Nobel Prize</a></li>
+                            <li><a href="#">Literature</a></li>
+                            <li><a href="#">Broadway</a></li>
+                            <li><a href="#">Play</a></li>
+                            <li><a href="#">Queen</a></li>
+                            <li><a href="#">Documentary</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+    {% endif %}
 {% endblock %}

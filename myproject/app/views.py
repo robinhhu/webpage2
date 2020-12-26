@@ -1,14 +1,16 @@
-from flask import render_template, flash, redirect, request
+import flask
+from flask import render_template, flash, redirect, request, url_for, session
 from app import app,db
 from flask_login import login_required, login_user,current_user,logout_user
 from .users import User
 from .contact import Contact
 from .post import Post
-from sqlalchemy import or_
+from .comment import Comment
+from sqlalchemy import or_, join, func
 
 @app.route('/')
 def index():
-    posts = Post.query.all().order_by(Post.date)
+    posts = db.session.query(Post.id,Post.date,Post.subject,Post.description,Post.title,User.username).join(User).filter(Post.ownerId==User.id).order_by(Post.date).all()
     movies = len(Post.query.filter_by(subject="MOVIES").all())
     drama = len(Post.query.filter_by(subject="DRAMA").all())
     books = len(Post.query.filter_by(subject="BOOKS").all())
@@ -26,7 +28,9 @@ def sign():
         user = User.query.filter_by(username=username,password=password).first()
         try:
             login_user(user)
-            return render_template('index.html')
+            next = request.args.get('next')
+
+            return redirect(next)
 
         except:
             msg="invalid username or password"
@@ -35,8 +39,10 @@ def sign():
     return render_template('sign.html')
 
 @app.route('/myRecords')
+@login_required
 def myRecords():
-    return render_template('myRecords.html')
+    posts = Post.query.filter_by(ownerId=current_user.get_id()).all()
+    return render_template('myRecords.html',posts=posts)
 
 @app.route('/addNew')
 @login_required
@@ -114,9 +120,47 @@ def password():
             return render_template('password.html',msg=msg)
     return render_template('password.html')
 
-@app.route('/postDetails')
-def postDetails():
-    return render_template('postDetails.html')
+@app.route('/delete/<int:id>',methods=['GET','POST'])
+def delete(id):
+        item_to_delete = Comment.query.get_or_404(id)
+        postId=item_to_delete.postId
+        db.session.delete(item_to_delete)
+        db.session.commit()
+        post = Post.query.filter_by(id=postId).first()
+        user = User.query.filter_by(id=post.ownerId).first()
+        comments = db.session.query(Comment.id, Comment.date, Comment.content, User.username).join(User).filter(
+            Comment.postId == post.id).order_by(Comment.date).all()
+        return render_template('postDetails.html', post=post, user=user, comments=comments)
+
+@app.route('/deletePosts/<int:id>',methods=['GET','POST'])
+def deletePost(id):
+        item_to_delete = Post.query.get_or_404(id)
+        if (current_user.get_id() == item_to_delete.ownerId):
+            db.session.delete(item_to_delete)
+            db.session.commit()
+            flash("You have successfully deteled the record!")
+        return render_template('index.html')
+
+@app.route('/postDetails/<int:id>',methods=['GET','POST'])
+@login_required
+def postDetails(id):
+    if request.method == 'POST':
+        message = request.form.get("message",type=str)
+        try:
+            comment = Comment(content=message,postId=id,ownerId=current_user.get_id())
+            db.session.add(comment)
+            db.session.commit()
+            flash('Comment succeed!!')
+
+        except:
+            flash('Sorry, comment failed...')
+
+    post = Post.query.get_or_404(id)
+    user = User.query.get_or_404(post.ownerId)
+    comments = db.session.query(Comment.id, Comment.date, Comment.content, User.username).join(User).filter(
+            Comment.postId == id).order_by(Comment.date).all()
+
+    return render_template('postDetails.html',post=post,user=user,comments=comments)
 
 @app.route('/search',methods=['GET','POST'])
 def search():
