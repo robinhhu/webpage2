@@ -1,16 +1,16 @@
 import flask
-from flask import render_template, flash, redirect, request, url_for, session
+from flask import render_template, flash, redirect, request
 from app import app,db
 from flask_login import login_required, login_user,current_user,logout_user
 from .users import User
 from .contact import Contact
 from .post import Post
 from .comment import Comment
-from sqlalchemy import or_, join, func
+from sqlalchemy import or_
 
 @app.route('/')
 def index():
-    posts = db.session.query(Post.id,Post.date,Post.subject,Post.description,Post.title,User.username).join(User).filter(Post.ownerId==User.id).order_by(Post.date).all()
+    posts = db.session.query(Post.id,Post.date,Post.subject,Post.description,Post.title,User.username).join(User).filter(Post.ownerId==User.id).order_by(Post.date.desc()).all()
     movies = len(Post.query.filter_by(subject="MOVIES").all())
     drama = len(Post.query.filter_by(subject="DRAMA").all())
     books = len(Post.query.filter_by(subject="BOOKS").all())
@@ -41,12 +41,25 @@ def sign():
 @app.route('/myRecords')
 @login_required
 def myRecords():
-    posts = Post.query.filter_by(ownerId=current_user.get_id()).all()
+    posts = Post.query.filter_by(ownerId=current_user.get_id()).order_by(Post.date.desc()).all()
     return render_template('myRecords.html',posts=posts)
 
-@app.route('/addNew')
+@app.route('/addNew',methods=['GET','POST'])
 @login_required
 def addNew():
+    if request.method == 'POST':
+        subject = request.form.get("subject",type=str)
+        title = request.form.get("title",type=str)
+        description = request.form.get("description",type=str)
+        print(subject,description,title)
+        try:
+            post = Post(subject=subject,title=title,description=description,ownerId=current_user.get_id())
+            db.session.add(post)
+            db.session.commit()
+            flash("Record created!! Check it in your records!")
+        except:
+            flash("Sorry, record failed...")
+
     return render_template('addNew.html')
 
 @app.route('/contact',methods=['GET','POST'])
@@ -139,7 +152,7 @@ def deletePost(id):
             db.session.delete(item_to_delete)
             db.session.commit()
             flash("You have successfully deteled the record!")
-        return render_template('index.html')
+        return redirect('/')
 
 @app.route('/postDetails/<int:id>',methods=['GET','POST'])
 @login_required
@@ -179,4 +192,4 @@ def searchs(subject):
 @login_required
 def logout():
     logout_user()
-    return render_template('index.html')
+    return redirect('/')
