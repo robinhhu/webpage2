@@ -1,23 +1,55 @@
 import flask
-from flask import render_template, flash, redirect, request
+from flask import render_template, flash, redirect, request, jsonify
 from app import app,db
 from flask_login import login_required, login_user,current_user,logout_user
+from sqlalchemy import or_
+from werkzeug.utils import secure_filename
+import os, datetime, random
+from datetime import timedelta
 from .users import User
 from .contact import Contact
 from .post import Post
 from .comment import Comment
-from sqlalchemy import or_
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG'])
+
+def create_uuid():
+    nowTime = datetime.datetime.now().strftime("%Y%m%d%H%M%S");
+    randomNum = random.randint(0, 100);
+    if randomNum <= 10:
+        randomNum = str(0) + str(randomNum);
+    uniqueNum = str(nowTime) + str(randomNum);
+    return uniqueNum;
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+app.send_file_max_age_default = timedelta(seconds=1)
 
 @app.route('/')
 def index():
-    posts = db.session.query(Post.id,Post.date,Post.subject,Post.description,Post.title,User.username).join(User).filter(Post.ownerId==User.id).order_by(Post.date.desc()).all()
+    posts = db.session.query(Post.id,Post.imgFile,Post.date,Post.subject,Post.description,Post.title,User.username).join(User).filter(Post.ownerId==User.id).order_by(Post.date.desc()).all()
+
+    s = []
+    for post in posts:
+        s.append(Post.query.get_or_404(post.id))
+    temp = []
+    for ss in s:
+        ss.a="far"
+        likes = ss.like
+        for like in likes:
+            if int(like.id) == int(current_user.get_id()):
+                ss.a="fas"
+        temp.append(ss)
+
     movies = len(Post.query.filter_by(subject="MOVIES").all())
     drama = len(Post.query.filter_by(subject="DRAMA").all())
     books = len(Post.query.filter_by(subject="BOOKS").all())
     exhibition = len(Post.query.filter_by(subject="EXHIBITION").all())
     music = len(Post.query.filter_by(subject="MUSIC").all())
+
     return render_template('index.html',posts=posts,movies=movies,drama=drama,
-                           books=books,exhibition=exhibition,music=music)
+                           books=books,exhibition=exhibition,music=music,temp=temp)
 
 @app.route('/sign',methods=['GET','POST'])
 def sign():
@@ -30,7 +62,7 @@ def sign():
             login_user(user)
             next = request.args.get('next')
 
-            return redirect(next)
+            return redirect(next or flask.url_for('index'))
 
         except:
             msg="invalid username or password"
@@ -48,12 +80,26 @@ def myRecords():
 @login_required
 def addNew():
     if request.method == 'POST':
+        img = request.files.get("photo")
+        if not (img and allowed_file(img.filename)):
+            return jsonify({"error": 1001, "msg": "Only png, jpg allowed"})
+
+        basepath = os.path.dirname(__file__)
+
+        fname = secure_filename(img.filename)
+
+        ext = fname.rsplit('.', 1)[1]
+        new_filename = create_uuid() + '.' + ext
+        upload_path = os.path.join(basepath, 'static/images',
+                                       new_filename)
+        img.save(upload_path)
+
         subject = request.form.get("subject",type=str)
         title = request.form.get("title",type=str)
         description = request.form.get("description",type=str)
         print(subject,description,title)
         try:
-            post = Post(subject=subject,title=title,description=description,ownerId=current_user.get_id())
+            post = Post(subject=subject,title=title,imgFile=new_filename,description=description,ownerId=current_user.get_id())
             db.session.add(post)
             db.session.commit()
             flash("Record created!! Check it in your records!")
@@ -168,12 +214,18 @@ def postDetails(id):
         except:
             flash('Sorry, comment failed...')
 
+    a = "far"
     post = Post.query.get_or_404(id)
     user = User.query.get_or_404(post.ownerId)
     comments = db.session.query(Comment.id, Comment.date, Comment.content, User.username).join(User).filter(
             Comment.postId == id).order_by(Comment.date).all()
+    likes = post.like
 
-    return render_template('postDetails.html',post=post,user=user,comments=comments)
+    for like in likes:
+        if int(like.id) == int(current_user.get_id()):
+            a = "fas"
+
+    return render_template('postDetails.html',post=post,user=user,comments=comments,a=a)
 
 @app.route('/search',methods=['GET','POST'])
 def search():
@@ -181,11 +233,25 @@ def search():
         content = request.form.get("search", type=str)
         posts = Post.query.filter(or_(Post.title.contains(content), Post.description.contains(content))).all()
 
+        for post in posts:
+            likes = post.like
+            post.a="far"
+            for like in likes:
+                if int(like.id) == int(current_user.get_id()):
+                    post.a = "fas"
+
     return render_template('search.html', posts=posts)
 
 @app.route('/search/<subject>',methods=['GET','POST'])
 def searchs(subject):
     posts=Post.query.filter_by(subject=subject).all()
+
+    for post in posts:
+        likes = post.like
+        post.a = "far"
+        for like in likes:
+            if int(like.id) == int(current_user.get_id()):
+                post.a = "fas"
     return render_template('search.html',posts=posts,subject=subject)
 
 @app.route('/logout')
@@ -193,3 +259,46 @@ def searchs(subject):
 def logout():
     logout_user()
     return redirect('/')
+
+@app.route('/likes/<int:id>',methods=['POST','GET'])
+def like(id):
+    if request.method == 'POST':
+        user = current_user.get_id()
+        post = Post.query.get_or_404(id)
+        likes = post.like
+        for like in likes:
+            if int(like.id) == int(user):
+                post.like.remove(current_user)
+                db.session.commit()
+                return redirect('/postDetails/' + str(id))
+
+        post.like.append(current_user)
+        db.session.commit()
+    return redirect('/postDetails/'+str(id))
+
+@app.route('/myLike',methods=['POST','GET'])
+@login_required
+def myLike():
+    temps = db.session.query(Post.id, Post.imgFile, Post.date, Post.subject, Post.description, Post.title,
+                             User.username).join(User).filter(Post.ownerId == User.id).order_by(Post.date.desc()).all()
+    s = [];
+    for temp in temps:
+        s.append(Post.query.get_or_404(temp.id))
+    posts = []
+    for ss in s:
+        likes = ss.like
+        ss.a="far"
+        for like in likes:
+            if int(like.id) == int(current_user.get_id()):
+                ss.a="fas"
+                posts.append(ss)
+
+    movies = len(Post.query.filter_by(subject="MOVIES").all())
+    drama = len(Post.query.filter_by(subject="DRAMA").all())
+    books = len(Post.query.filter_by(subject="BOOKS").all())
+    exhibition = len(Post.query.filter_by(subject="EXHIBITION").all())
+    music = len(Post.query.filter_by(subject="MUSIC").all())
+
+    return render_template('myLike.html', posts=posts, movies=movies, drama=drama,
+                           books=books, exhibition=exhibition, music=music)
+

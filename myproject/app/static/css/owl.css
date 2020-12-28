@@ -6,17 +6,11 @@
 /*
  *  Owl Carousel - Core
  */
-.label {
-    width: 39%;
-    height: 46px;
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #7a7a7a;
-    outline: none;
-    padding: 15px 15px;
-    margin-bottom: 30px;
-}
+
+ .red {
+    color: red;
+ }
+
 .invisible{
     height:0;
 }
@@ -72,7 +66,7 @@
   .owl-carousel .owl-item img {
     display: block;
     width: 100%; }
-  .owl-carousel .owl-nav.disabled,
+  .OWL-CAROUSEL .OWL-NAV.DISABLED,
   .owl-carousel .owl-dots.disabled {
     display: none; }
   .owl-carousel .owl-nav .owl-prev,
