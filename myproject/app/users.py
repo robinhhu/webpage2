@@ -1,6 +1,10 @@
 from app import db
 from flask_login import UserMixin
 
+collect = db.Table('collect',
+    db.Column('postId', db.Integer, db.ForeignKey('post.id'),primary_key=True),
+    db.Column('userId', db.Integer, db.ForeignKey('user.id'),primary_key=True)
+)
 
 class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)

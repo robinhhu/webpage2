@@ -495,6 +495,7 @@ header .navbar {
 	margin-right: 5px;
 }
 
+
 .blog-posts .down-content ul.post-tags li,
 .blog-posts .down-content ul.post-share li {
 	color: #aaa;
@@ -503,7 +504,7 @@ header .navbar {
 .blog-posts .down-content ul.post-tags li a,
 .blog-posts .down-content ul.post-share li a {
 	font-size: 14px;
-	color: #aaa;
+	color: #f48840;
 	font-weight: 400;
 	transition: all .3s;
 }

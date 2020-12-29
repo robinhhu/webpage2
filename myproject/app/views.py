@@ -33,14 +33,13 @@ def index():
     s = []
     for post in posts:
         s.append(Post.query.get_or_404(post.id))
-    temp = []
-    for ss in s:
-        ss.a="far"
-        likes = ss.like
-        for like in likes:
-            if int(like.id) == int(current_user.get_id()):
-                ss.a="fas"
-        temp.append(ss)
+    temps = []
+    for i in range(0,len(s)):
+        likes = s[i].like
+        collects=s[i].collect
+        s[i].num=len(likes)
+        s[i].numb=len(collects)
+        temps.append(s[i])
 
     movies = len(Post.query.filter_by(subject="MOVIES").all())
     drama = len(Post.query.filter_by(subject="DRAMA").all())
@@ -49,7 +48,7 @@ def index():
     music = len(Post.query.filter_by(subject="MUSIC").all())
 
     return render_template('index.html',posts=posts,movies=movies,drama=drama,
-                           books=books,exhibition=exhibition,music=music,temp=temp)
+                           books=books,exhibition=exhibition,music=music,temp=temps)
 
 @app.route('/sign',methods=['GET','POST'])
 def sign():
@@ -74,6 +73,10 @@ def sign():
 @login_required
 def myRecords():
     posts = Post.query.filter_by(ownerId=current_user.get_id()).order_by(Post.date.desc()).all()
+    for post in posts:
+        post.num = len(post.like)
+        post.numb = len(post.collect)
+
     return render_template('myRecords.html',posts=posts)
 
 @app.route('/addNew',methods=['GET','POST'])
@@ -182,22 +185,42 @@ def password():
 @app.route('/delete/<int:id>',methods=['GET','POST'])
 def delete(id):
         item_to_delete = Comment.query.get_or_404(id)
-        postId=item_to_delete.postId
-        db.session.delete(item_to_delete)
-        db.session.commit()
+        postId = item_to_delete.postId
+        if (int(current_user.get_id()) == int(item_to_delete.ownerId)):
+            db.session.delete(item_to_delete)
+            db.session.commit()
         post = Post.query.filter_by(id=postId).first()
         user = User.query.filter_by(id=post.ownerId).first()
         comments = db.session.query(Comment.id, Comment.date, Comment.content, User.username).join(User).filter(
             Comment.postId == post.id).order_by(Comment.date).all()
-        return render_template('postDetails.html', post=post, user=user, comments=comments)
+
+        a = "far"
+        b = "far"
+        likes = post.like
+        collects = post.collect
+
+        for like in likes:
+            if int(like.id) == int(current_user.get_id()):
+                a = "fas"
+
+        for collect in collects:
+            if int(collect.id) == int(current_user.get_id()):
+                b = "fas"
+
+        return render_template('postDetails.html', post=post, user=user, comments=comments, a=a,b=b)
 
 @app.route('/deletePosts/<int:id>',methods=['GET','POST'])
 def deletePost(id):
         item_to_delete = Post.query.get_or_404(id)
-        if (current_user.get_id() == item_to_delete.ownerId):
+        comments = Comment.query.filter_by(postId=id).all()
+        if (int(current_user.get_id()) == int(item_to_delete.ownerId)):
+            for comment in comments:
+                db.session.delete(comment)
             db.session.delete(item_to_delete)
             db.session.commit()
             flash("You have successfully deteled the record!")
+        else:
+            flash("You do not have access to delete the post..")
         return redirect('/')
 
 @app.route('/postDetails/<int:id>',methods=['GET','POST'])
@@ -215,17 +238,23 @@ def postDetails(id):
             flash('Sorry, comment failed...')
 
     a = "far"
+    b = "far"
     post = Post.query.get_or_404(id)
     user = User.query.get_or_404(post.ownerId)
     comments = db.session.query(Comment.id, Comment.date, Comment.content, User.username).join(User).filter(
             Comment.postId == id).order_by(Comment.date).all()
     likes = post.like
+    collects = post.collect
 
     for like in likes:
         if int(like.id) == int(current_user.get_id()):
             a = "fas"
 
-    return render_template('postDetails.html',post=post,user=user,comments=comments,a=a)
+    for collect in collects:
+        if int(collect.id) == int(current_user.get_id()):
+            b = "fas"
+
+    return render_template('postDetails.html',post=post,user=user,comments=comments,a=a,b=b)
 
 @app.route('/search',methods=['GET','POST'])
 def search():
@@ -234,11 +263,16 @@ def search():
         posts = Post.query.filter(or_(Post.title.contains(content), Post.description.contains(content))).all()
 
         for post in posts:
+            collects = post.collect
             likes = post.like
+            post.b="far"
             post.a="far"
             for like in likes:
                 if int(like.id) == int(current_user.get_id()):
                     post.a = "fas"
+            for collect in collects:
+                if int(collect.id) == int(current_user.get_id()):
+                    post.b = "fas"
 
     return render_template('search.html', posts=posts)
 
@@ -248,10 +282,15 @@ def searchs(subject):
 
     for post in posts:
         likes = post.like
+        collects=post.collect
         post.a = "far"
+        post.b = "far"
         for like in likes:
             if int(like.id) == int(current_user.get_id()):
                 post.a = "fas"
+        for collect in collects:
+            if int(collect.id) == int(current_user.get_id()):
+                post.b = "fas"
     return render_template('search.html',posts=posts,subject=subject)
 
 @app.route('/logout')
@@ -273,6 +312,22 @@ def like(id):
                 return redirect('/postDetails/' + str(id))
 
         post.like.append(current_user)
+        db.session.commit()
+    return redirect('/postDetails/'+str(id))
+
+@app.route('/collects/<int:id>',methods=['POST','GET'])
+def collect(id):
+    if request.method == 'POST':
+        user = current_user.get_id()
+        post = Post.query.get_or_404(id)
+        collects = post.collect
+        for collect in collects:
+            if int(collect.id) == int(user):
+                post.collect.remove(current_user)
+                db.session.commit()
+                return redirect('/postDetails/' + str(id))
+
+        post.collect.append(current_user)
         db.session.commit()
     return redirect('/postDetails/'+str(id))
 
@@ -300,5 +355,31 @@ def myLike():
     music = len(Post.query.filter_by(subject="MUSIC").all())
 
     return render_template('myLike.html', posts=posts, movies=movies, drama=drama,
+                           books=books, exhibition=exhibition, music=music)
+
+@app.route('/mysc',methods=['POST','GET'])
+@login_required
+def mysc():
+    temps = db.session.query(Post.id, Post.imgFile, Post.date, Post.subject, Post.description, Post.title,
+                             User.username).join(User).filter(Post.ownerId == User.id).order_by(Post.date.desc()).all()
+    s = [];
+    for temp in temps:
+        s.append(Post.query.get_or_404(temp.id))
+    posts = []
+    for ss in s:
+        collects = ss.collect
+        ss.a="far"
+        for collect in collects:
+            if int(collect.id) == int(current_user.get_id()):
+                ss.a="fas"
+                posts.append(ss)
+
+    movies = len(Post.query.filter_by(subject="MOVIES").all())
+    drama = len(Post.query.filter_by(subject="DRAMA").all())
+    books = len(Post.query.filter_by(subject="BOOKS").all())
+    exhibition = len(Post.query.filter_by(subject="EXHIBITION").all())
+    music = len(Post.query.filter_by(subject="MUSIC").all())
+
+    return render_template('mysc.html', posts=posts, movies=movies, drama=drama,
                            books=books, exhibition=exhibition, music=music)
 

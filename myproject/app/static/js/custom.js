@@ -129,6 +129,45 @@ jQuery( document ).ready(function( $ ) {
         }
      });
 
+    $("#sc").click(function () {
+        if (this.name == "far") {
+            this.innerHTML = "<i class='fas fa-star'></i>";
+            this.name = "fas";
+
+            var content = $("#temp").html();
+            $.ajax({
+                type: 'POST',
+                url: "/collects/".concat(content),
+                data: {
+                    'id': content
+                },
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                success: function (data) {
+                    window.history.back();
+                }
+            });
+        }
+        else {
+            this.innerHTML = "<i class='far fa-star'></i>";
+            this.name = "far";
+
+            var content = $("#temp").html();
+            $.ajax({
+                type: 'POST',
+                url: "/collects/".concat(content),
+                data: {
+                    'id': content
+                },
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json',
+                success: function (data) {
+                    window.history.back();
+                }
+            });
+
+        }
+     });
 
 });
 

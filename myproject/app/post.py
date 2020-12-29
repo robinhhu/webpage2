@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+from .users import collect
 
 like = db.Table('like',
     db.Column('postId', db.Integer, db.ForeignKey('post.id'),primary_key=True),
@@ -17,11 +18,11 @@ class Post(db.Model):
     comment = db.relationship('Comment', backref='post', lazy=True)
     like = db.relationship('User', secondary=like, lazy='subquery',
                            backref=db.backref('posts', lazy=True))
+    collect = db.relationship('User', secondary=collect, lazy='subquery',
+                           backref=db.backref('Post', lazy=True))
 
     def __repr__(self):
         return '<Post %r>' % self.id
 
-    def getInt(self):
-        return self.likeNum;
 
 
