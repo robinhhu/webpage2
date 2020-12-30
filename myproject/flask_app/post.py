@@ -1,4 +1,4 @@
-from app import db
+from flask_app import db
 from datetime import datetime
 from .users import collect
 

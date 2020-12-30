@@ -19,7 +19,7 @@ USE_SESSION_FOR_NEXT = True
 login_manager.login_message = "Please log in to access the previous page"
 
 
-from app import views
+from flask_app import views
 from .users import User
 
 @login_manager.user_loader

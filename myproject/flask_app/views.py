@@ -1,6 +1,6 @@
 import flask
 from flask import render_template, flash, redirect, request, jsonify
-from app import app,db
+from flask_app import app,db
 from flask_login import login_required, login_user,current_user,logout_user
 from sqlalchemy import or_
 from werkzeug.utils import secure_filename
