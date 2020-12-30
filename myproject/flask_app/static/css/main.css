@@ -141,7 +141,7 @@ textarea:-ms-input-placeholder { color: #555555;}
 
 label {
   margin: 0;
-  display: block;
+  color: #555555;
 }
 
 /*---------------------------------------------*/
@@ -165,7 +165,7 @@ iframe {
 .txt1 {
   font-family: Poppins-Regular;
   font-size: 13px;
-  color: #e5e5e5;
+  color: #555555;
   line-height: 1.5;
 }
 

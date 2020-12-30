@@ -1,5 +1,5 @@
 import flask
-from flask import render_template, flash, redirect, request, jsonify
+from flask import render_template, flash, redirect, request, jsonify, make_response
 from flask_app import app,db
 from flask_login import login_required, login_user,current_user,logout_user
 from sqlalchemy import or_
@@ -10,6 +10,8 @@ from .users import User
 from .contact import Contact
 from .post import Post
 from .comment import Comment
+from werkzeug.security import generate_password_hash,check_password_hash
+
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG'])
 
@@ -55,19 +57,29 @@ def sign():
     if request.method == 'POST':
         username = request.form.get("username", type=str)
         password = request.form.get("password", type=str)
-        print(username,password)
-        user = User.query.filter_by(username=username,password=password).first()
+        user = User.query.filter_by(username=username).first()
         try:
-            login_user(user)
-            next = request.args.get('next')
+            if check_password_hash(user.password, password):
+                login_user(user)
+                next = request.args.get('next')
 
-            return redirect(next or flask.url_for('index'))
+                resp = make_response(redirect(next or flask.url_for('index')))
+                resp.set_cookie('username', username)
+                resp.set_cookie('password', password)
+                return resp
+
+            else:
+                msg = "Password incorrect"
+                return render_template('sign.html',msg=msg)
 
         except:
-            msg="invalid username or password"
-            return render_template('sign.html',msg=msg)
+                msg="Invalid username"
+                return render_template('sign.html',msg=msg)
 
-    return render_template('sign.html')
+    name = request.cookies.get('username')
+    password = request.cookies.get('password')
+
+    return render_template('sign.html',name=name,password=password)
 
 @app.route('/myRecords')
 @login_required
@@ -135,26 +147,25 @@ def create():
         username = request.form.get("username", type=str)
         password = request.form.get("password", type=str)
         if(len(password) < 6):
-            msg = "password should at least contain 6 characters"
+            msg="password should at least contain 6 characters"
             return render_template('create.html',msg=msg)
-        print(email,username,password)
         user = User.query.filter_by(email=email).all()
         if (len(user) != 0):
-            msg = "You already have an account"
-            return render_template('create.html', msg=msg)
+            msg="You already have an account"
+            return render_template('create.html',msg=msg)
         u = User.query.filter_by(username=username).all()
         if (len(u) != 0):
-            msg = "invalid username"
-            return render_template('create.html', msg=msg)
+            msg="invalid username"
+            return render_template('create.html',msg=msg)
         try:
-            user = User(email=email,username=username,password=password)
+            user = User(email=email,username=username,password=generate_password_hash(password))
             db.session.add(user)
             db.session.commit()
             msg="Successfully create account, please log in"
             return render_template('sign.html',msg=msg)
         except:
             msg="Please try again"
-            render_template('create.html', msg=msg)
+            return render_template('create.html',msg=msg)
     return render_template('create.html')
 
 @app.route('/password',methods=['GET','POST'])
@@ -164,15 +175,15 @@ def password():
         username = request.form.get("username", type=str)
         password = request.form.get("password", type=str)
         if(len(password) < 6):
-            msg = "password should at least contain 6 characters"
+            msg="password should at least contain 6 characters"
             return render_template('password.html',msg=msg)
         user = User.query.filter_by(username=username,email=email).all()
         if (len(user) == 0):
-            msg = "account not found"
-            return render_template('password.html', msg=msg)
+            msg="account not found"
+            return render_template('password.html',msg=msg)
         try:
             user = User.query.filter_by(username=username, email=email).first()
-            user.password = password
+            user.password = generate_password_hash(password)
             db.session.commit()
             msg="password changed"
             return render_template('sign.html',msg=msg)
@@ -277,6 +288,7 @@ def search():
     return render_template('search.html', posts=posts)
 
 @app.route('/search/<subject>',methods=['GET','POST'])
+@login_required
 def searchs(subject):
     posts=Post.query.filter_by(subject=subject).all()
 
@@ -355,7 +367,7 @@ def myLike():
     music = len(Post.query.filter_by(subject="MUSIC").all())
 
     return render_template('myLike.html', posts=posts, movies=movies, drama=drama,
-                           books=books, exhibition=exhibition, music=music)
+                           books=books, exhibition=exhibition, music=music,temps=temps)
 
 @app.route('/mysc',methods=['POST','GET'])
 @login_required
@@ -381,5 +393,5 @@ def mysc():
     music = len(Post.query.filter_by(subject="MUSIC").all())
 
     return render_template('mysc.html', posts=posts, movies=movies, drama=drama,
-                           books=books, exhibition=exhibition, music=music)
+                           books=books, exhibition=exhibition, music=music,temps=temps)
 

@@ -8,7 +8,7 @@ app.config.from_object('config2')
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = 'an secret string'
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db,render_as_batch=True,compare_type=True)
 
 #login settings
 login_manager = LoginManager()
