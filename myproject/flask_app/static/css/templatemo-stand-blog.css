@@ -254,13 +254,7 @@ header .navbar {
 	right: 30px;
 	top: 25px;
 }
-.navbar .navbar-toggler-icon:after {
-	content: '\f0c9';
-	color: #fff;
-	font-size: 18px;
-	line-height: 30px;
-	font-family: 'FontAwesome';
-}
+
 
 
 

@@ -189,6 +189,8 @@
 
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
 readers do not read off random characters that represent icons */
+
+
 .fa-500px:before {
   content: "\f26e"; }
 
@@ -4583,3 +4585,12 @@ readers do not read off random characters that represent icons */
   overflow: visible;
   position: static;
   width: auto; }
+
+.navbar .navbar-toggler-icon:after {
+	content: '\f0c9';
+	background-image: url("data:image/svg+xml,%3csvg xmlns='https://github.com/seanyeh/fontawesome-svgs/blob/master/svg/bars-solid.svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+	color: #fff;
+	font-size: 18px;
+	line-height: 30px;
+	font-family: 'FontAwesome';
+}

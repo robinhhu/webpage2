@@ -9,12 +9,9 @@ window.addEventListener("load",function(){
      console.log(this.hasConsented() ?
       'enable cookies' : 'disable cookies');
     },
-    law: {
-     regionalLaw: false,
-    },
     content: {
          message: "The website uses cookies so that we can remember you for your next login.",
     },
-    location: true,
+
    });
 });
