@@ -1,5 +1,8 @@
+<!--This html file extends from base.html-->
+<!--and is intended to allow visitors to contact me-->
 {% extends "base.html" %}
 {% block title %}
+<!--bolck title and flash messages-->
 <title>Contact me</title>
     {% for message in get_flashed_messages() %}
     <div class="alert alert-warning">
@@ -9,6 +12,7 @@
     {% endfor %}
 {% endblock %}
 
+<!--bolck navigation area-->
 {% block nav %}
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -32,6 +36,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="/contact">Contact us</a>
               </li>
+              <!--Check whether user is login, if it is the case, customized the navbar-->
               {% if current_user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Log out {{ current_user.username }}</a>
@@ -48,6 +53,8 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
     <div class="heading-page header-text">
       <section class="page-heading">
         <div class="container">
@@ -62,11 +69,11 @@
         </div>
       </section>
     </div>
-
+    <!-- Page Content -->
+    <!-- Main Content Starts Here -->
     <section class="contact-us">
       <div class="container">
         <div class="row">
-        
           <div class="col-lg-12">
             <div class="down-contact">
               <div class="row">
@@ -135,7 +142,7 @@
               </div>
             </div>
           </div>
-          
+          <!--Geolocation and Baidu Map -->
           <div class="col-lg-12">
               <div id="baiduMap"></div>
           </div>
@@ -145,6 +152,7 @@
     </section>
 {% endblock %}
 
+<!--Additional scripts to load map-->
 {% block script %}
   <script src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=Nw45INtNDf18onUbMMlsC2WGGfw7OFF4"></script>
   <script src="../static/js/geo.js"></script>

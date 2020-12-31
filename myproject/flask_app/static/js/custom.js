@@ -89,6 +89,10 @@ jQuery( document ).ready(function( $ ) {
             });
         }
 
+//add to my like, render the icon when the button is clicked
+//that is, if is liked then it should be unliked and vice versa
+//also a ajax request is rendered to send request to backend
+//so that the information can be stored in a database
     $("#like").click(function () {
         if (this.name == "far") {
             this.innerHTML = "<i class='fas fa-heart'></i>";
@@ -125,10 +129,13 @@ jQuery( document ).ready(function( $ ) {
                     window.history.back();
                 }
             });
-
         }
      });
 
+//add to my collection, render the icon when the button is clicked
+//that is, if is collected then it should be uncollected and vice versa
+//also a ajax request is rendered to send request to backend
+//so that the information can be stored in a database
     $("#sc").click(function () {
         if (this.name == "far") {
             this.innerHTML = "<i class='fas fa-star'></i>";
@@ -168,6 +175,5 @@ jQuery( document ).ready(function( $ ) {
 
         }
      });
-
 });
 

@@ -1,8 +1,12 @@
+<!--This html file extends from base.html-->
+<!--and is intended to render search results-->
 {% extends "base.html" %}
+<!--bolck title-->
 {% block title %}
 <title>Search Results</title>
 {% endblock %}
 
+<!--bolck navigation area and flash message-->
 {% block nav %}
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -26,6 +30,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact us</a>
               </li>
+              <!--Check whether user is login, if it is the case, customized the navbar-->
               {% if current_user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Log out {{ current_user.username }}</a>
@@ -42,6 +47,9 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <!--if no posts-->
     {% if posts|length < 1 %}
     <div class="heading-page header-text">
       <section class="page-heading">
@@ -57,6 +65,7 @@
         </div>
       </section>
     </div>
+    <!--if posts-->
     {% else %}
     <div class="heading-page header-text">
       <section class="page-heading">
@@ -72,6 +81,8 @@
         </div>
       </section>
     </div>
+    <!-- Page Content -->
+    <!-- Main Content Starts Here -->
     <section class="blog-posts">
       <div class="container">
         <div class="row">

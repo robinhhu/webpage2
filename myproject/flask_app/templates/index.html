@@ -1,4 +1,7 @@
+<!--This html file extends from base.html-->
+<!--and is intended to deliver the main page-->
 {% extends "base.html" %}
+<!--bolck title and flash messages-->
 {% block title %}
 <title>HerzenHerzen</title>
     {% for message in get_flashed_messages() %}
@@ -9,6 +12,7 @@
     {% endfor %}
 {% endblock %}
 
+<!--bolck navigation area-->
 {% block nav %}
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -32,6 +36,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact us</a>
               </li>
+              <!--Check whether user is login, if it is the case, customized the navbar-->
               {% if current_user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Log out {{ current_user.username }}</a>
@@ -48,6 +53,8 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
     <div class="main-banner header-text">
       <div class="container-fluid">
         <div class="owl-banner owl-carousel">
@@ -124,7 +131,8 @@
         </div>
       </div>
     </div>
-
+    <!-- Page Content -->
+    <!-- Main Content Starts Here -->
     <section class="blog-posts">
       <div class="container">
         <div class="row">

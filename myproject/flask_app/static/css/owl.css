@@ -17,11 +17,12 @@
  .alert {
     margin-bottom:0;
  }
-     #baiduMap {
-     width: 88vw;
-     height: 78vh;
-     margin-top: 5vh;
-    }
+
+ #baiduMap {
+    width: 88vw;
+    height: 78vh;
+    margin-top: 5vh;
+ }
 
 .owl-carousel {
   display: none;
@@ -29,14 +30,18 @@
   -webkit-tap-highlight-color: transparent;
   /* position relative and z-index fix webkit rendering fonts issue */
   position: relative;
-  z-index: 1; }
-  .owl-carousel .owl-stage {
-    position: relative;
-    -ms-touch-action: pan-Y;
-    touch-action: manipulation;
-    -moz-backface-visibility: hidden;
-    /* fix firefox animation glitch */ }
-  .owl-carousel .owl-stage:after {
+  z-index: 1;
+}
+
+.owl-carousel .owl-stage {
+  position: relative;
+  -ms-touch-action: pan-Y;
+  touch-action: manipulation;
+  -moz-backface-visibility: hidden;
+    /* fix firefox animation glitch */
+}
+
+.owl-carousel .owl-stage:after {
     content: ".";
     display: block;
     clear: both;

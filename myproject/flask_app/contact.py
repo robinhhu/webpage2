@@ -1,5 +1,7 @@
 from flask_app import db
 
+#Contact class, is stored as a table "contact" in app.db
+#Messages sent is stored in the database
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))

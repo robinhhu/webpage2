@@ -1,8 +1,12 @@
+<!--This html file extends from base.html-->
+<!--and is intended to deliver contents liked by the user-->
 {% extends "base.html" %}
+<!--set title-->
 {% block title %}
 <title>Mylike</title>
 {% endblock %}
 
+<!--bolck navigation area-->
 {% block nav %}
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -26,6 +30,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact us</a>
               </li>
+              <!--Check whether user is login, if it is the case, customized the navbar-->
               {% if current_user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Log out {{ current_user.username }}</a>
@@ -42,6 +47,8 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
     <div class="heading-page header-text">
       <section class="page-heading">
         <div class="container">
@@ -56,6 +63,9 @@
         </div>
       </section>
     </div>
+    <!-- Page Content -->
+    <!-- Main Content Starts Here -->
+    <!--if no posts-->
     {% if posts|length < 1 %}
     <section class="blog-posts grid-system">
       <div class="container">
@@ -64,26 +74,26 @@
             <div class="all-blog-posts">
               <div class="row">
                 <div class="col-lg-12">
-        <div class="sidebar-item comments" id="comments">
-          <div class="sidebar-heading">
-            <h2>No content here..</h2>
-          </div>
-        </div>
-      </div>
+                  <div class="sidebar-item comments" id="comments">
+                    <div class="sidebar-heading">
+                      <h2>No content here..</h2>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <!--if posts exist-->
     {% else %}
     <section class="blog-posts">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-        <div class="all-blog-posts">
+            <div class="all-blog-posts">
               <div class="row">
-
                 {% for i in range(0,posts|length) %}
                 <div class="col-lg-12">
                   <div class="blog-post">
@@ -123,10 +133,10 @@
                 {% endfor %}
               </div>
             </div>
-    </div>
+          </div>
           <div class="col-lg-4">
-        <div class="sidebar">
-            <div class="row">
+            <div class="sidebar">
+              <div class="row">
                 <div class="col-lg-12">
                   <div class="sidebar-item search">
                     <form id="search_form" method="post" action="/search">

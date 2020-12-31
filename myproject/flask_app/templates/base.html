@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+    <!--head-->
+    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="Herzen personal record">
@@ -14,56 +15,58 @@
       <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/templatemo-stand-blog.css') }}">
       <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/owl.css') }}">
       {% block title %}{% endblock %}
-  </head>
+    </head>
+    <!--body-->
     <body>
-
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div id="preloader">
+            <div class="jumper">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
-    </div>
+        <!--header navigation-->
+        <header class="">
+          {% block nav %}{% endblock %}
+        </header>
+        <!--content to render-->
+        </div>
+          {% block content %}{% endblock %}
+        </div>
+        <!--footer-->
+        <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <ul class="social-icons">
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">Behance</a></li>
+                  <li><a href="#">Linkedin</a></li>
+                  <li><a href="#">Dribbble</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-12">
+                <div class="copyright-text">
+                  <p>December 2020
 
-    <header class="">
-      {% block nav %}{% endblock %}
-    </header>
+                     | Hu Yitian
 
-    </div>
-      {% block content %}{% endblock %}
-    </div>
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <ul class="social-icons">
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Behance</a></li>
-              <li><a href="#">Linkedin</a></li>
-              <li><a href="#">Dribbble</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-12">
-            <div class="copyright-text">
-              <p>December 2020
-
-                 | Hu Yitian
-
-                 | China Sichuan Chengdu </p>
+                     | China Sichuan Chengdu </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </footer>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/js/custom.js"></script>
-    <script src="../static/js/owl.js"></script>
-    <script src="../static/js/slick.js"></script>
-    <script src="../static/js/isotope.js"></script>
-    <script src="../static/js/accordions.js"></script>
-    <script src="../static/js/main.js"></script>
-    {% block script %}{% endblock %}
-  </body>
+        </footer>
+        <!--scripts-->
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+        <script src="../static/js/custom.js"></script>
+        <script src="../static/js/owl.js"></script>
+        <script src="../static/js/slick.js"></script>
+        <script src="../static/js/isotope.js"></script>
+        <script src="../static/js/accordions.js"></script>
+        <script src="../static/js/main.js"></script>
+        {% block script %}{% endblock %}
+    </body>
 </html>

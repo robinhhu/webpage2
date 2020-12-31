@@ -1,16 +1,20 @@
+<!--This html file extends from base.html-->
+<!--and is intended to add new posts to the website-->
 {% extends "base.html" %}
+<!--bolck title and flash messages-->
 {% block title %}
-<title>Add New</title>
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message }}
-    </div>
-    {% endfor %}
+  <title>Add New</title>
+  {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message }}
+      </div>
+  {% endfor %}
 {% endblock %}
 
+<!--bolck navigation area-->
 {% block nav %}
-    <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand" href="/"><h2>HerzenHerzen<em>.</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +36,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact us</a>
               </li>
+              <!--Check whether user is login, if it is the case, customized the navbar-->
               {% if current_user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Log out {{ current_user.username }}</a>
@@ -45,11 +50,6 @@
           </div>
         </div>
       </nav>
-    {% for message in get_flashed_messages() %}
-    <div class="invisible">
-        {{ message }}
-    </div>
-    {% endfor %}
 {% endblock %}
 
 {% block content %}
@@ -69,6 +69,8 @@
         </div>
       </section>
     </div>
+    <!-- Page Content -->
+    <!-- Main Content Starts Here -->
     <section class="contact-us">
       <div class="container">
         <div class="row">

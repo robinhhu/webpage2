@@ -2,11 +2,22 @@ from flask_app import db
 from datetime import datetime
 from .users import collect
 
+#The like table indicates a many to many relationship
+#between users and posts.
+#In another word, a user can like various number of posts
+#meanwhile a post can be liked by multiple users
 like = db.Table('like',
     db.Column('postId', db.Integer, db.ForeignKey('post.id'),primary_key=True),
     db.Column('userId', db.Integer, db.ForeignKey('user.id'),primary_key=True)
 )
 
+#The post is an instance class that stored vital information
+#about the post. Such as title, subject, img, description, etc.
+#We use id as our primary key, and an ownerId as our foreign
+#key, which means every post should be posted by a user of the
+#website.
+#Comment, like and collect are all relationship to another instance
+#class or relationship
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80))

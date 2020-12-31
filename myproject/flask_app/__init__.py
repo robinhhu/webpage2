@@ -3,6 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
+#app settings, configure the application
+#set secret key to ensure security
+#DB and migration folder also created here
 app = Flask(__name__)
 app.config.from_object('config2')
 app.config['WTF_CSRF_ENABLED'] = True
@@ -22,6 +25,7 @@ login_manager.login_message = "Please log in to access the previous page"
 from flask_app import views
 from .users import User
 
+#login manager
 @login_manager.user_loader
 def user_loader(user_id):
     from .users import User
