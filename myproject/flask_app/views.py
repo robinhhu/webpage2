@@ -285,10 +285,10 @@ def deletePost(id):
                 db.session.delete(comment)
             db.session.delete(item_to_delete)
             db.session.commit()
-            app.logger.info('%s post deleted', item_to_delete.postId)
+            app.logger.info('%s post deleted', item_to_delete.id)
             flash("You have successfully deteled the record!")
         else:
-            app.logger.warning("%s no access to delete",item_to_delete.postId)
+            app.logger.warning("%s no access to delete",item_to_delete.id)
             flash("You do not have access to delete the post..")
         return redirect('/')
 
