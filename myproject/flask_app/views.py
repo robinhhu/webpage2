@@ -350,7 +350,8 @@ def search():
                 if int(collect.id) == int(current_user.get_id()):
                     post.b = "fas"
 
-    return render_template('search.html', posts=posts)
+        return render_template('search.html', posts=posts)
+    return redirect('/')
 
 #login required page
 #Query the search content in the database and render the search page

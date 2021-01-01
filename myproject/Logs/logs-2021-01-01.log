@@ -270,3 +270,106 @@ AttributeError: 'Post' object has no attribute 'postId'
 2021-01-01 16:04:50,202 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:04:50] "[36mGET /static/fonts/fontawesome-free-5.15.1-web/webfonts/fa-regular-400.woff2 HTTP/1.1[0m" 304 -
 2021-01-01 16:04:50,204 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:04:50] "[36mGET /static/fonts/fontawesome-free-5.15.1-web/webfonts/fa-solid-900.woff2 HTTP/1.1[0m" 304 -
 2021-01-01 16:04:50,622 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:04:50] "[37mGET /postDetails/7 HTTP/1.1[0m" 200 -
+2021-01-01 16:21:46,295 - INFO - _internal.py - _log - 113 -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-01-01 16:21:54,400 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[37mGET / HTTP/1.1[0m" 200 -
+2021-01-01 16:21:54,440 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,440 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/fonts/fontawesome-free-5.15.1-web/css/all.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,444 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/css/fontawesome.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,451 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/css/templatemo-stand-blog.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,453 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/css/owl.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,455 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/hollywood.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,458 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/chichi.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,460 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/music.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,463 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/prado.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,469 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/book.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,475 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/2020123110573455.JPG HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,483 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/2020123111024252.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,484 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/2020123111000258.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,486 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/2020122910330254.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,488 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/2020122910055188.png HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,489 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/2020122910070781.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,492 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/Bohemian%20Rhapsody.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,501 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,502 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/images/The%20Remains%20Of%20The%20Day.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,506 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/js/owl.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,509 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/js/slick.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,510 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/js/isotope.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,511 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/js/accordions.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:54,513 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:55,424 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:55] "[36mGET /static/fonts/fontawesome-free-5.15.1-web/webfonts/fa-solid-900.woff2 HTTP/1.1[0m" 304 -
+2021-01-01 16:21:56,162 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:56] "[37mGET / HTTP/1.1[0m" 200 -
+2021-01-01 16:21:58,640 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[37mPOST /search HTTP/1.1[0m" 200 -
+2021-01-01 16:21:58,808 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,810 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/fonts/fontawesome-free-5.15.1-web/css/all.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,810 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/css/fontawesome.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,813 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/css/templatemo-stand-blog.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,814 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/css/owl.css HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,826 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/js/slick.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,829 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/js/owl.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,831 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,835 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/js/accordions.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,837 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/js/isotope.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,839 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,848 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/The%20Remains%20Of%20The%20Day.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,849 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/Bohemian%20Rhapsody.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,850 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/2020122910055188.png HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,852 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/2020122910070781.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,859 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/2020122910330254.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,859 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/2020123110573455.JPG HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,866 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/2020123111000258.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,867 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/2020123111024252.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,875 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/images/heading-bg.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:21:58,917 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:58] "[36mGET /static/fonts/fontawesome-free-5.15.1-web/webfonts/fa-regular-400.woff2 HTTP/1.1[0m" 304 -
+2021-01-01 16:21:59,330 - ERROR - app.py - log_exception - 1892 - Exception on /search [GET]
+Traceback (most recent call last):
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\emeraldfile\2020-2021S1\web\cw2\myproject\myproject\flask_app\views.py", line 353, in search
+    return render_template('search.html', posts=posts)
+UnboundLocalError: local variable 'posts' referenced before assignment
+2021-01-01 16:21:59,337 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:21:59] "[35m[1mGET /search HTTP/1.1[0m" 500 -
+2021-01-01 16:22:56,735 - INFO - _internal.py - _log - 113 -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-01-01 16:23:01,925 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:01] "[37mPOST /search HTTP/1.1[0m" 200 -
+2021-01-01 16:23:02,150 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/fonts/fontawesome-free-5.15.1-web/css/all.css HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,152 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,152 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/css/templatemo-stand-blog.css HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,154 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/css/fontawesome.css HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,156 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/css/owl.css HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,187 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,189 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/js/owl.js HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,193 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/js/slick.js HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,196 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/js/isotope.js HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,199 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/js/accordions.js HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,202 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,204 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/images/Bohemian%20Rhapsody.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,207 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/images/2020122910055188.png HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,208 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/images/The%20Remains%20Of%20The%20Day.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,211 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/images/2020122910070781.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,214 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/images/2020122910330254.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,217 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/images/2020123110573455.JPG HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,221 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/images/2020123111000258.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,223 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[36mGET /static/images/2020123111024252.jpg HTTP/1.1[0m" 304 -
+2021-01-01 16:23:02,753 - ERROR - app.py - log_exception - 1892 - Exception on /search [GET]
+Traceback (most recent call last):
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "f:\emeraldfile\2020-2021s1\web\myproject\flask\lib\site-packages\flask\app.py", line 2098, in make_response
+    "The view function did not return a valid response. The"
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2021-01-01 16:23:02,760 - INFO - _internal.py - _log - 113 - 127.0.0.1 - - [01/Jan/2021 16:23:02] "[35m[1mGET /search HTTP/1.1[0m" 500 -
