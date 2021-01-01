@@ -71,6 +71,7 @@ def sign():
         try:
             if check_password_hash(user.password, password):
                 login_user(user)
+                app.logger.info('%s logged in successfully', username)
                 next = request.args.get('next')
 
                 resp = make_response(redirect(next or flask.url_for('index')))
@@ -80,6 +81,7 @@ def sign():
 
             else:
                 msg = "Password incorrect"
+                app.logger.info('%s failed to log in', username)
                 return render_template('sign.html',msg=msg)
 
         except:
@@ -130,12 +132,15 @@ def addNew():
         subject = request.form.get("subject",type=str)
         title = request.form.get("title",type=str)
         description = request.form.get("description",type=str)
+        name = request.cookies.get('username')
         try:
             post = Post(subject=subject,title=title,imgFile=new_filename,description=description,ownerId=current_user.get_id())
             db.session.add(post)
             db.session.commit()
+            app.logger.info('%s create a post', name)
             flash("Record created!! Check it in your records!")
         except:
+            app.logger.warning('%s failed to create a post', name)
             flash("Sorry, record failed...")
 
     return render_template('addNew.html')
@@ -157,8 +162,10 @@ def contact():
             contact = Contact(name=name,email=email,subject=subject,message=message)
             db.session.add(contact)
             db.session.commit()
+            app.logger.info('%s sent a message', name)
             flash('Message sent! Thank you!!')
         except:
+            app.logger.warning('%s fail to sent a message', name)
             flash('Sorry, message failed...')
             render_template('contact.html')
     return render_template('contact.html')
@@ -192,9 +199,11 @@ def create():
             user = User(email=email,username=username,password=generate_password_hash(password))
             db.session.add(user)
             db.session.commit()
+            app.logger.info('%s create account', username)
             msg="Successfully create account, please log in"
             return render_template('sign.html',msg=msg)
         except:
+            app.logger.warning("%s fail to create",username)
             msg="Please try again"
             return render_template('create.html',msg=msg)
     return render_template('create.html')
@@ -222,10 +231,12 @@ def password():
             user = User.query.filter_by(username=username, email=email).first()
             user.password = generate_password_hash(password)
             db.session.commit()
+            app.logger.info('%s reset password', username)
             msg="password changed"
             return render_template('sign.html',msg=msg)
 
         except:
+            app.logger.warning("%s fail to reset",username)
             msg="please try again"
             return render_template('password.html',msg=msg)
     return render_template('password.html')
@@ -274,8 +285,10 @@ def deletePost(id):
                 db.session.delete(comment)
             db.session.delete(item_to_delete)
             db.session.commit()
+            app.logger.info('%s post deleted', item_to_delete.postId)
             flash("You have successfully deteled the record!")
         else:
+            app.logger.warning("%s no access to delete",item_to_delete.postId)
             flash("You do not have access to delete the post..")
         return redirect('/')
 
@@ -294,6 +307,7 @@ def postDetails(id):
             flash('Comment succeed!!')
 
         except:
+            app.logger.warning("comment failed")
             flash('Sorry, comment failed...')
 
     a = "far"
@@ -363,6 +377,7 @@ def searchs(subject):
 @app.route('/logout')
 @login_required
 def logout():
+    app.logger.info('%s logout', current_user)
     logout_user()
     return redirect('/')
 
